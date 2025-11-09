@@ -51,3 +51,18 @@ It uses **Sentence Transformers** (`all-MiniLM-L6-v2`) to generate embeddings an
 curl -X POST "https://sandipanb01-shl-assessment-recommender.hf.space/recommend" \
      -H "Content-Type: application/json" \
      -d '{"query": "Technology Professional 8.8 Job Focused Assessment", "k": 10}'
+#Response example-----
+{
+  "query": "Technology Professional 8.8 Job Focused Assessment",
+  "recommended_assessments": [
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/technical-sales-associate-solution/",
+      "name": "Technical Sales Associate Solution",
+      "adaptive_support": "No",
+      "description": "The Technical Sales Associate solution is for entry-level retail positions...",
+      "duration": 41,
+      "remote_support": "Yes",
+      "test_type": ["Knowledge & Skills"]
+    }
+  ]
+}
