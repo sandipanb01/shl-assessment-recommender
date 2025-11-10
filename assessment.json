@@ -1,0 +1,350 @@
+{
+  "status": "healthy"
+}
+{
+  "query": "I want to understand leadership style and motivation of candidates",
+  "recommended_assessments": [
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/opq-team-types-and-leadership-styles-report",
+      "name": "OPQ Team Types and Leadership Styles Report",
+      "adaptive_support": "No",
+      "description": "This OPQ (Occupational Personality Questionnaire) report is based on Belbin's team types and Bass's leadership and reporting styles. Belbins team types: individual preferred role when working in ateam.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/opq-leadership-report/",
+      "name": "OPQ Leadership Report",
+      "adaptive_support": "No",
+      "description": "This OPQ (Occupational Personality Questionnaire) report provides a detailed analysis of an individual's leadership potential. It is based on SHL's leading edge Leadership Model, providing a competency based approach to leadership.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/products/product-catalog/view/enterprise-leadership-report-2-0/",
+      "name": "Enterprise Leadership Report 2.0",
+      "adaptive_support": "No",
+      "description": "Assess and benchmark your leaders against enterprise leadership - the model for leader impact to drive business results in a complex work environment. For more information, visit: https://www.shl.com/en/solutions/identify-develop-leaders/enterprise-leadership/ .",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/products/product-catalog/view/enterprise-leadership-report/",
+      "name": "Enterprise Leadership Report 1.0",
+      "adaptive_support": "No",
+      "description": "Assess and benchmark your leaders against enterprise leadership - the model for leader impact to drive business results in a complex work environment. For more information, visit: https://www.shl.com/en/solutions/identify-develop-leaders/enterprise-leadership/ .",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/products/product-catalog/view/occupational-personality-questionnaire-opq32r/",
+      "name": "Occupational Personality Questionnaire OPQ32r",
+      "adaptive_support": "No",
+      "description": "The SHL Occupational Personality Questionnaire, the OPQ32, is one of the most widely used and respected measures of workplace behavioural style in the world. It sets a high standard of measurement excellence, providing HR professionals and business managers with relevant and accurate information to make fast and well-informed people decisions.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/occupational-personality-questionnaire-opq32r/",
+      "name": "Occupational Personality Questionnaire OPQ32r",
+      "adaptive_support": "No",
+      "description": "The SHL Occupational Personality Questionnaire, the OPQ32, is one of the most widely used and respected measures of workplace behavioural style in the world. It sets a high standard of measurement excellence, providing HR professionals and business managers with relevant and accurate information to make fast and well-informed people decisions.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/manager-8-0-jfa-4310/",
+      "name": "Manager 8.0+ JFA",
+      "adaptive_support": "No",
+      "description": "The Manager 8.0+ Job-Focused Assessment is designed for candidates applying to their first leadership positions and includes SHL’s new innovative mobile-first ability assessment, Verify Interactive – Inductive Reasoning. It measures behaviors that underlie successful performance in first-line manager roles across a wide range of industries.",
+      "duration": 44,
+      "remote_support": "Yes",
+      "test_type": [
+        "Competencies",
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/marketing-new/",
+      "name": "Marketing (New)",
+      "adaptive_support": "No",
+      "description": "Multi-choice test that measures the conceptual knowledge of marketing principles, market research, consumer behavior, brand management, sales management, channel management and advertisement management. Graduate, Manager, Mid-Professional, Professional Individual Contributor, Supervisor, in minutes = 9",
+      "duration": 9,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/financial-professional-short-form/",
+      "name": "Financial Professional - Short Form",
+      "adaptive_support": "No",
+      "description": "This solution is for mid-level financial institution positions that require Series 6/7 certification. Candidates answer multiple choice questions to measure financial professional aptitude, learning potential, achievement orientation, conscientiousness, persistence and planfulness, self leadership, interpersonal leadership, sales focus and customer focus.",
+      "duration": 35,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/css3-new/",
+      "name": "CSS3 (New)",
+      "adaptive_support": "No",
+      "description": "Multi-choice test that measures the knowledge of CSS3 and its application in providing style to web documents. in minutes = 8 This assessment measures behavioural tendencies, motivation, and workplace style.",
+      "duration": 8,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    }
+{
+  "query": "Looking to hire mid-level professionals who are proficient in Python, SQL and Java Script",
+  "recommended_assessments": [
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/professional-7-0-solution-3958/",
+      "name": "Professional + 7.0 Solution",
+      "adaptive_support": "No",
+      "description": "Our Professional + 7.0 solution is designed for all non-managerial professional individual contributor positions, and includes SHL’s new innovative mobile-first ability assessment, Verify Interactive – Deductive Reasoning. Sample tasks for these jobs include, but are not limited to: gathering requirements, analyzing data, managing projects, producing products or services.",
+      "duration": 51,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/professional-7-1-solution/",
+      "name": "Professional + 7.1 (International)",
+      "adaptive_support": "No",
+      "description": "Our Professional + 7.1 solution is designed for all non-managerial professional individual contributor positions, and includes SHL’s new innovative mobile-first ability assessment, Verify Interactive – Deductive Reasoning. Sample tasks for these jobs include, but are not limited to: gathering requirements, analyzing data, managing projects, producing products or services.",
+      "duration": 56,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/products/product-catalog/view/professional-7-1-solution/",
+      "name": "Professional + 7.1 (International)",
+      "adaptive_support": "No",
+      "description": "Our Professional + 7.1 solution is designed for all non-managerial professional individual contributor positions, and includes SHL’s new innovative mobile-first ability assessment, Verify Interactive – Deductive Reasoning. Sample tasks for these jobs include, but are not limited to: gathering requirements, analyzing data, managing projects, producing products or services.",
+      "duration": 56,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/technical-sales-associate-solution/",
+      "name": "Technical Sales Associate Solution",
+      "adaptive_support": "No",
+      "description": "The Technical Sales Associate solution is for entry-level retail positions in which employees proactively sell a specific line of products that requires substantial knowledge about the products and have their pay and/or performance based on sales revenue. Sample tasks for these jobs include, but are not limited to: obtaining detailed product information, promoting products to customers, persuading customers to buy products, and completing a transaction with a customer.",
+      "duration": 41,
+      "remote_support": "Yes",
+      "test_type": [
+        "Knowledge & Skills"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-solution/",
+      "name": "Entry Level Sales Solution",
+      "adaptive_support": "No",
+      "description": "The Precise Fit Entry Level Sales Roles Solution is for entry-level positions in which employees proactively sell products or services to customers and have their compensation and/or performance based on sales revenue. Sample tasks for these jobs include, but are not limited to: promoting products to customers, persuading customers to buy products, and completing a transaction with a customer.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-7-1/",
+      "name": "Entry level Sales 7.1 (International)",
+      "adaptive_support": "No",
+      "description": "The Entry Level Sales 7.1 Solution is for entry-level positions in which employees proactively sell products or services to customers and have their compensation and/or performance based on sales revenue. Sample tasks for these jobs include, but are not limited to: promoting products to customers, persuading customers to buy products, and completing a transaction with a customer.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/sales-representative-solution/",
+      "name": "Sales Representative Solution",
+      "adaptive_support": "No",
+      "description": "The Sales Representative solution is for entry-level sales positions in which employees proactively sell products to customers and have their pay and/or performance based on sales revenue. Sample tasks for these jobs include, but are not limited to: promoting products to customers, persuading customers to buy products, and completing a transaction with a customer.",
+      "duration": 29,
+      "remote_support": "Yes",
+      "test_type": [
+        "Knowledge & Skills"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/verify-verbal-ability-next-generation/",
+      "name": "Verify - Verbal Ability - Next Generation",
+      "adaptive_support": "Yes",
+      "description": "The Verbal Ability test measures the ability to read written passages and comprehend the text, interpret tone and author intent, identify main ideas, and predict author responses. Sample tasks for jobs that may require verbal ability include, but are not limited to: working with reports, correspondence, instructions, and research information.",
+      "duration": 15,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-sift-out-7-1/",
+      "name": "Entry Level Sales Sift Out 7.1",
+      "adaptive_support": "No",
+      "description": "The Entry Level Sales Sift Out 7.1 Solution is for entry-level positions in which employees proactively sell products or services to customers and have their compensation and/or performance based on sales revenue. Sample tasks for these jobs include, but are not limited to: promoting products to customers, persuading customers to buy products, and completing a transaction with a customer Swedish, Chinese Simplified, Finnish, English (USA), Portuguese (Brazil), French, Danish, Italian, Arabic, Dutch, French (Canada), Latin American Spanish, English International, Norwegian, German, in minutes = 20",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Knowledge & Skills"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/automata-sql-new/",
+      "name": "Automata - SQL (New)",
+      "adaptive_support": "No",
+      "description": "A simulated query writing test that measures the ability to write SQL queries to perform DDL, DML and DCL tasks. in minutes = max 30",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    }
+  ]
+}
+{
+  "query": "I am hiring for Java developers who can also collaborate effectively with my business teams",
+  "recommended_assessments": [
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/professional-7-0-solution-3958/",
+      "name": "Professional + 7.0 Solution",
+      "adaptive_support": "No",
+      "description": "Our Professional + 7.0 solution is designed for all non-managerial professional individual contributor positions, and includes SHL’s new innovative mobile-first ability assessment, Verify Interactive – Deductive Reasoning. Sample tasks for these jobs include, but are not limited to: gathering requirements, analyzing data, managing projects, producing products or services.",
+      "duration": 51,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/professional-7-1-solution/",
+      "name": "Professional + 7.1 (International)",
+      "adaptive_support": "No",
+      "description": "Our Professional + 7.1 solution is designed for all non-managerial professional individual contributor positions, and includes SHL’s new innovative mobile-first ability assessment, Verify Interactive – Deductive Reasoning. Sample tasks for these jobs include, but are not limited to: gathering requirements, analyzing data, managing projects, producing products or services.",
+      "duration": 56,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/products/product-catalog/view/professional-7-1-solution/",
+      "name": "Professional + 7.1 (International)",
+      "adaptive_support": "No",
+      "description": "Our Professional + 7.1 solution is designed for all non-managerial professional individual contributor positions, and includes SHL’s new innovative mobile-first ability assessment, Verify Interactive – Deductive Reasoning. Sample tasks for these jobs include, but are not limited to: gathering requirements, analyzing data, managing projects, producing products or services.",
+      "duration": 56,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/sales-representative-solution/",
+      "name": "Sales Representative Solution",
+      "adaptive_support": "No",
+      "description": "The Sales Representative solution is for entry-level sales positions in which employees proactively sell products to customers and have their pay and/or performance based on sales revenue. Sample tasks for these jobs include, but are not limited to: promoting products to customers, persuading customers to buy products, and completing a transaction with a customer.",
+      "duration": 29,
+      "remote_support": "Yes",
+      "test_type": [
+        "Knowledge & Skills"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/automata-fix-new/",
+      "name": "Automata - Fix (New)",
+      "adaptive_support": "No",
+      "description": "A simulated compiler integrated test to measure debugging skills in C, C++ and Java. The test checks the ability to fix logical or syntactical errors and to reuse an existing code.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/entry-level-sales-solution/",
+      "name": "Entry Level Sales Solution",
+      "adaptive_support": "No",
+      "description": "The Precise Fit Entry Level Sales Roles Solution is for entry-level positions in which employees proactively sell products or services to customers and have their compensation and/or performance based on sales revenue. Sample tasks for these jobs include, but are not limited to: promoting products to customers, persuading customers to buy products, and completing a transaction with a customer.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Ability & Aptitude"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/java-8-new/",
+      "name": "Java 8 (New)",
+      "adaptive_support": "No",
+      "description": "Multi-choice test that measures the knowledge of Java class design, exceptions, generics, collections, concurrency, JDBC and Java I/O fundamentals. in minutes = 18 This assessment measures behavioural tendencies, motivation, and workplace style.",
+      "duration": 18,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/manager-8-0-jfa-4310/",
+      "name": "Manager 8.0+ JFA",
+      "adaptive_support": "No",
+      "description": "The Manager 8.0+ Job-Focused Assessment is designed for candidates applying to their first leadership positions and includes SHL’s new innovative mobile-first ability assessment, Verify Interactive – Inductive Reasoning. It measures behaviors that underlie successful performance in first-line manager roles across a wide range of industries.",
+      "duration": 44,
+      "remote_support": "Yes",
+      "test_type": [
+        "Competencies",
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/solutions/products/product-catalog/view/occupational-personality-questionnaire-opq32r/",
+      "name": "Occupational Personality Questionnaire OPQ32r",
+      "adaptive_support": "No",
+      "description": "The SHL Occupational Personality Questionnaire, the OPQ32, is one of the most widely used and respected measures of workplace behavioural style in the world. It sets a high standard of measurement excellence, providing HR professionals and business managers with relevant and accurate information to make fast and well-informed people decisions.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    },
+    {
+      "url": "https://www.shl.com/products/product-catalog/view/occupational-personality-questionnaire-opq32r/",
+      "name": "Occupational Personality Questionnaire OPQ32r",
+      "adaptive_support": "No",
+      "description": "The SHL Occupational Personality Questionnaire, the OPQ32, is one of the most widely used and respected measures of workplace behavioural style in the world. It sets a high standard of measurement excellence, providing HR professionals and business managers with relevant and accurate information to make fast and well-informed people decisions.",
+      "duration": 20,
+      "remote_support": "Yes",
+      "test_type": [
+        "Personality & Behaviour"
+      ]
+    }
+  ]
+}
+  ]
+}
