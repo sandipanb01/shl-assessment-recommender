@@ -1,7 +1,7 @@
 # 🧠 SHL Assessment Recommender — FastAPI App
 
 This project is a semantic AI recommender system that suggests the most relevant **SHL assessments** based on a job description, query, or URL.  
-It runs as both a **FastAPI endpoint** (for API evaluation) and a **Hugging Face Space** (for user interaction).
+It runs on a **FastAPI endpoint** (for API evaluation) hosted on a **Hugging Face Space** (for user interaction).
 
 ---
 
