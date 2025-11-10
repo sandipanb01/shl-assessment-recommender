@@ -5,14 +5,6 @@ It runs as both a **FastAPI endpoint** (for API evaluation) and a **Hugging Face
 
 ---
 
-## 🚀 Live Web App
-
-👉 **[Try the live demo on Hugging Face](https://sandipanb01-shl-assessment-recommender.hf.space)**
-
-You can interactively test the model and recommendations through the hosted web interface.
-
----
-
 ## ⚙️ API Endpoint
 
 ### **Base URL**
