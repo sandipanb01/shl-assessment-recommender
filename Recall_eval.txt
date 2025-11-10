@@ -1,0 +1,1 @@
+Recall@10 (optimized fine-tuned model) = 1.000
