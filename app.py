@@ -179,7 +179,7 @@ BEHAV_SLUGS = [
     "leadership", "personality", "behavioral", "behaviour", "enterprise"
 ]
 ABILITY_SLUGS = [
-    "cognitive", "ability", "aptitude", "reasoning", "numerical",
+    "cognitive", "knowledge", "skills", "aptitude", "reasoning", "numerical",
     "deductive", "verbal", "inductive", "logical", "spatial",
     "verify", "interact", "interactive"
 ]
@@ -191,6 +191,8 @@ SPECIAL_HYBRID_NAMES = {
     "technology professional 8.0 job focused assessment": "C",
     "technology professional 8.8 job focused assessment": "C",
     "technology professional job focused assessment": "C",
+    "Machine Learning professional": "C",
+    "ML": "C",
     "technology professional": "C",
     "manager 8.0 job focused assessment": "C",
     "manager 8.0+ jfa": "C",
@@ -217,6 +219,8 @@ SPECIAL_HYBRID_NAMES = {
     "verbal reasoning": "A",
     "ability": "A",
     "aptitude": "A",
+    "knowledge": "A",
+    "skills": "A",
 
     # --- Knowledge / Technical tests ---
     "coding": "K",
@@ -262,13 +266,13 @@ def detect_type_from_row(name: str, raw_type: str = "") -> str:
     if any(k in n for k in [
         "cognitive", "ability", "aptitude", "reasoning", "numerical",
         "verbal", "logical", "deductive", "inductive", "spatial",
-        "interactive", "verify"
+        "interactive", "verify","knowledge","skills"
     ]):
         return "A"
 
     # --- Technical / Knowledge-based tests ---
     if any(k in n for k in [
-        "python", "java", "sql", "coding", "developer", "technical",
+        "python", "java", "sql", "coding", "developer", "technical","c++"
         "data", "programming", "software", "machine learning", "cloud"
     ]):
         return "K"
@@ -297,7 +301,7 @@ def recommend_for_query(query: str, K: int = 10) -> Dict[str, Any]:
     hybrid_intent = False
     q_low = qtext.lower()
     if (
-        any(x in q_low for x in ["cognitive", "aptitude", "ability", "reasoning", "numerical", "verbal"]) or
+        any(x in q_low for x in ["cognitive", "aptitude", "ability", "reasoning", "numerical","knowledge","skills", "verbal"]) or
         any(x in q_low for x in ["ai", "ml", "data", "analyst", "engineer"])
     ) and (
         any(x in q_low for x in ["personality", "behavior", "behaviour", "competency", "leadership", "motivation", "teamwork", "collaboration"])
