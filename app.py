@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from bs4 import BeautifulSoup
 from sentence_transformers import SentenceTransformer, util
 import pandas as pd
-import gradio as gr
+import uvicorn
 
 # ------------------------------------------------------------
 # Configuration
@@ -111,6 +111,13 @@ if catalog_df is None:
     }])
     catalog_embeddings = model.encode((catalog_df["TestName"] + ". " + catalog_df["description"]).tolist(),
                                       convert_to_tensor=True)
+    # convert to numpy for consistent behavior
+    try:
+        catalog_embeddings = np.asarray(catalog_embeddings)
+        if hasattr(catalog_embeddings, "dtype") and str(catalog_embeddings.dtype).startswith("float"):
+            catalog_embeddings = catalog_embeddings.astype(np.float32, copy=False)
+    except Exception:
+        pass
 
 # ------------------------------------------------------------
 # Utility Functions
@@ -145,26 +152,28 @@ def extract_text_from_url(url: str, timeout=6) -> str:
     except Exception:
         return ""
 
-TECH_KEYWORDS = {"python","java","c++","sql","javascript","aws","docker","kubernetes","ml","machine learning","data","pandas","spark","tensorflow","pytorch"}
-SOFT_KEYWORDS = {"communication","collaborat","stakeholder","client","lead","motivat","team","adapt","problem","present"}
-
 def extract_skills(text: str):
     t = (text or "").lower()
+    # Expanded keyword coverage for AI/ML, teamwork, leadership etc.
+    TECH_KEYWORDS = {
+        "python","java","c++","sql","javascript","aws","docker","kubernetes",
+        "ml","machine learning","artificial intelligence","ai","data","pandas",
+        "spark","tensorflow","pytorch","neural","deep learning"
+    }
+    SOFT_KEYWORDS = {
+        "communication","collaboration","teamwork","stakeholder","client",
+        "lead","leadership","motivation","team","adapt","problem","present",
+        "interpersonal","influence","empathy","behavior","behaviour"
+    }
+
     tech = [k for k in TECH_KEYWORDS if k in t]
-    soft = []
-    for k in SOFT_KEYWORDS:
-        if k in t:
-            if k.startswith("collaborat"): soft.append("collaboration")
-            elif k.startswith("motivat"): soft.append("motivation")
-            elif k.startswith("present"): soft.append("presentation")
-            elif k.startswith("adapt"): soft.append("adaptability")
-            else: soft.append(k)
+    soft = [k for k in SOFT_KEYWORDS if k in t]
+
     return list(dict.fromkeys(tech)), list(dict.fromkeys(soft))
 
 # ------------------------------------------------------------
 # Improved classification logic with coverage for Ability, Behavioural, etc.
 # ------------------------------------------------------------
-
 BEHAV_SLUGS = [
     "opq", "sjt", "situational", "judgement", "motivation",
     "leadership", "personality", "behavioral", "behaviour", "enterprise"
@@ -176,21 +185,57 @@ ABILITY_SLUGS = [
 ]
 
 # ✅ Added hybrid mapping for SHL Job-Focused & Professional assessments
+# ✅ Improved hybrid + explicit type mapping for SHL tests
 SPECIAL_HYBRID_NAMES = {
+    # --- Hybrid / Competency + Behavioural ---
+    "technology professional 8.0 job focused assessment": "C",
     "technology professional 8.8 job focused assessment": "C",
     "technology professional job focused assessment": "C",
-    "manager 8.0+ jfa": "C",
+    "technology professional": "C",
     "manager 8.0 job focused assessment": "C",
-    "leadership 8.0 jfa": "C"
+    "manager 8.0+ jfa": "C",
+    "leadership 8.0 jfa": "C",
+    "leadership job focused assessment": "C",
+    "professional 8.0": "C",
+    "professional 8.8": "C",
+    "enterprise job focused": "C",
+
+    # --- Pure Behavioural / Personality ---
+    "opq": "P",             # Occupational Personality Questionnaire
+    "occupational personality questionnaire": "P",
+    "motivation": "P",
+    "sjt": "P",             # Situational Judgement Test
+    "situational judgement": "P",
+    "behavioral": "P",
+    "behaviour": "P",
+
+    # --- Cognitive / Ability / Aptitude ---
+    "verify": "A",          # SHL Verify tests
+    "inductive reasoning": "A",
+    "deductive reasoning": "A",
+    "numerical reasoning": "A",
+    "verbal reasoning": "A",
+    "ability": "A",
+    "aptitude": "A",
+
+    # --- Knowledge / Technical tests ---
+    "coding": "K",
+    "developer": "K",
+    "programming": "K",
+    "technical test": "K",
+    "data": "K",
+    "sql": "K",
+    "python": "K",
+    "java": "K"
 }
 
 def detect_type_from_row(name: str, raw_type: str = "") -> str:
     n = (name or "").lower().strip()
     rt = str(raw_type or "").lower()
 
-    # ✅ Handle known SHL hybrid tests explicitly
+    # ✅ Check both name and raw_type for known SHL mappings
     for key, code in SPECIAL_HYBRID_NAMES.items():
-        if key in n:
+        if key in n or key in rt:
             return code
 
     # Explicit hints from type field
@@ -244,11 +289,27 @@ def recommend_for_query(query: str, K: int = 10) -> Dict[str, Any]:
     wants_tech = len(tech_sk) > 0
     wants_beh = len(soft_sk) > 0
 
+    # ✅ Boost hybrid assessments if both tech + behavior skills detected
+    hybrid_boost = wants_tech and wants_beh
+
+    # ✅ Detect hybrid intent (when user wants both cognitive & personality)
+    # ✅ Improved hybrid intent detection — broader and more realistic
+    hybrid_intent = False
+    q_low = qtext.lower()
+    if (
+        any(x in q_low for x in ["cognitive", "aptitude", "ability", "reasoning", "numerical", "verbal"]) or
+        any(x in q_low for x in ["ai", "ml", "data", "analyst", "engineer"])
+    ) and (
+        any(x in q_low for x in ["personality", "behavior", "behaviour", "competency", "leadership", "motivation", "teamwork", "collaboration"])
+    ):
+        hybrid_intent = True
+
     # --- robust similarity computation (integrated) ---
     q_emb = model.encode([qtext], convert_to_tensor=True)
 
     sims = None
     try:
+        # if catalog_embeddings is a tensor-like (sentence-transformers tensor) use util.cos_sim directly
         if hasattr(catalog_embeddings, "shape") and not isinstance(catalog_embeddings, np.ndarray):
             sims = util.cos_sim(q_emb, catalog_embeddings)[0].cpu().numpy()
         else:
@@ -270,14 +331,31 @@ def recommend_for_query(query: str, K: int = 10) -> Dict[str, Any]:
     df = catalog_df.copy().reset_index(drop=True)
     df["score"] = sims
 
+    # Apply hybrid boosts (job-focused / JFA) when tech+beh intent detected
+    if hybrid_boost and "job focused" in " ".join(df["TestName"].str.lower()):
+        df.loc[df["TestName"].str.lower().str.contains("job focused"), "score"] *= 1.3
+        df.loc[df["TestName"].str.lower().str.contains("jfa"), "score"] *= 1.3
+
     if "TestType" not in df.columns and "test_type" in df.columns:
         df["TestType"] = df["test_type"]
     if "TestType" not in df.columns:
         df["TestType"] = ""
 
     df["TNorm"] = df.apply(lambda r: detect_type_from_row(r.get("TestName",""), r.get("TestType","")), axis=1)
-    tech_df = df[df["TNorm"].isin(["K","A","S"])].sort_values("score", ascending=False)
-    beh_df = df[df["TNorm"].isin(["P","B","C"])].sort_values("score", ascending=False)
+
+    # If hybrid intent is detected, boost 'C' type assessments and re-sort
+    if hybrid_intent:
+        # Stronger hybrid boost to ensure C-type assessments dominate top results
+        df.loc[df["TNorm"] == "C", "score"] *= 1.5
+        # Also promote top OPQ/SJT items slightly since they pair with cognitive
+        df.loc[df["TNorm"].isin(["P", "B"]), "score"] *= 1.2
+        df = df.sort_values("score", ascending=False)
+        tech_df = df[df["TNorm"].isin(["K","A","S"])].sort_values("score", ascending=False)
+        beh_df = df[df["TNorm"].isin(["P","B","C"])].sort_values("score", ascending=False)
+    else:
+        tech_df = df[df["TNorm"].isin(["K","A","S"])].sort_values("score", ascending=False)
+        beh_df = df[df["TNorm"].isin(["P","B","C"])].sort_values("score", ascending=False)
+
 
     K = max(MIN_K, min(MAX_K, int(K)))
     if wants_tech and wants_beh:
@@ -292,33 +370,40 @@ def recommend_for_query(query: str, K: int = 10) -> Dict[str, Any]:
 
     picks, seen_urls = [], set()
     for _, row in tech_df.iterrows():
-        if len([p for p in picks if p.get("TNorm") in ["K","A","S"]]) >= tech_k: break
+        if len([p for p in picks if p.get("TNorm") in ["K","A","S"]]) >= tech_k:
+            break
         url = str(row.get("URL",""))
-        if url in seen_urls: continue
+        if url in seen_urls:
+            continue
         picks.append(row.to_dict()); seen_urls.add(url)
     for _, row in beh_df.iterrows():
-        if len([p for p in picks if p.get("TNorm") in ["P","B","C"]]) >= beh_k: break
+        if len([p for p in picks if p.get("TNorm") in ["P","B","C"]]) >= beh_k:
+            break
         url = str(row.get("URL",""))
-        if url in seen_urls: continue
+        if url in seen_urls:
+            continue
         picks.append(row.to_dict()); seen_urls.add(url)
     if len(picks) < K:
         for _, row in df.sort_values("score", ascending=False).iterrows():
-            if len(picks) >= K: break
+            if len(picks) >= K:
+                break
             url = str(row.get("URL",""))
-            if url in seen_urls: continue
+            if url in seen_urls:
+                continue
             picks.append(row.to_dict()); seen_urls.add(url)
 
     TYPE_MAPPING = {
-    "K": ["Knowledge & Skills"],
-    "P": ["Personality & Behaviour"],
-    "A": ["Ability & Aptitude"],
-    "B": ["Biodata & Situational Judgement"],
-    "C": ["Competencies", "Personality & Behaviour"],  # ✅ SHL hybrid alignment
-    "S": ["Simulations"]
-    }   
+        "K": ["Knowledge & Skills"],
+        "P": ["Personality & Behaviour"],
+        "A": ["Ability & Aptitude"],
+        "B": ["Biodata & Situational Judgement"],
+        "C": ["Competencies", "Personality & Behaviour"],  # ✅ SHL hybrid alignment
+        "S": ["Simulations"]
+    }
 
     def format_description(text):
-        if not text: return ""
+        if not text:
+            return ""
         text = re.sub(r"\s+", " ", text).strip()
         parts = re.split(r"(?<=[.!?])\s+", text)
         return " ".join(parts[:2])
@@ -378,16 +463,8 @@ def recommend(req: RecommendRequest):
     }
 
 # ------------------------------------------------------------
-# Optional Gradio UI
+# Run with uvicorn when executed directly (useful locally)
+# Hugging Face Docker runtime will import `app` and serve it automatically.
 # ------------------------------------------------------------
-def gradio_run(q):
-    res = recommend_for_query(q, K=10)
-    return res["recommended_assessments"], {"skills": res["explanation"]["tech_skills"] + res["explanation"]["soft_skills"], "query_text": res["explanation"]["query_text"]}
-
-ui = gr.Interface(fn=gradio_run,
-                  inputs=gr.Textbox(label="Enter job description, query or JD URL"),
-                  outputs=[gr.JSON(label="Recommendations"), gr.JSON(label="Meta")],
-                  title="SHL Assessment Recommender")
-
 if __name__ == "__main__":
-    ui.launch(server_name="0.0.0.0", server_port=7860)
+    uvicorn.run("app:app", host="0.0.0.0", port=7860, log_level="info")
